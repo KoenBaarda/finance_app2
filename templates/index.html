@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bingo Card</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+    <style>
+        .clicked {
+            background-color: #333 !important;
+        }
+    </style>
+</head>
+<body>
+    <h1>Bingo Card</h1>
+    <form method="post">
+        <table>
+            {% for row in card %}
+                <tr>
+                    {% for num in row %}
+                        <td>
+                            <button 
+                            type="submit" 
+                            name="button" 
+                            value="{{ num }}"
+                            class="{% if num in clicked_buttons %}clicked {% endif %}"
+                            >{{ num }}</button>
+                        </td>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+        </table>
+    </form>
+</body>
+</html>
